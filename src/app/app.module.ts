@@ -25,6 +25,7 @@ import { PromotionService } from './services/promotion.service';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 
+const mockFlag = true;
 @NgModule({
   declarations: [
     AppComponent,
