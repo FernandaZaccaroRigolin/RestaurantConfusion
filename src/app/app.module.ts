@@ -2,8 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar'; 
-import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms'; 
 
 import { AppComponent } from './app.component';
 
@@ -48,7 +53,8 @@ const mockFlag = true;
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    FlexLayoutModule,  
+    FlexLayoutModule,
+    FormsModule,  
     AppRoutingModule, 
     MatListModule,
     MatIconModule,
@@ -56,6 +62,10 @@ const mockFlag = true;
     MatCardModule,
     MatButtonModule,   
     MatDialogModule,  
+    MatFormFieldModule, 
+    MatInputModule,
+    MatCheckboxModule    
+    
   ],
   providers: [
     DishService,
