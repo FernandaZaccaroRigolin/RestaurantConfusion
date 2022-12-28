@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar'; 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatDialogModule } from '@angular/material/dialog';
+
 import { AppComponent } from './app.component';
 
 import { MatListModule } from '@angular/material/list';
@@ -25,6 +27,8 @@ import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { LoginComponent } from './login/login.component';
+
 
 const mockFlag = true;
 @NgModule({
@@ -36,7 +40,8 @@ const mockFlag = true;
     FooterComponent,
     AboutComponent,
     HomeComponent,
-    ContactComponent
+    ContactComponent,
+    LoginComponent
     
   ],
   imports: [
@@ -49,13 +54,17 @@ const mockFlag = true;
     MatIconModule,
     MatGridListModule,
     MatCardModule,
-    MatButtonModule,     
+    MatButtonModule,   
+    MatDialogModule,  
   ],
   providers: [
     DishService,
     PromotionService,
     LeaderService,
   ],
+  entryComponents: [
+    LoginComponent
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
