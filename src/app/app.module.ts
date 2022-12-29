@@ -20,6 +20,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 import 'hammerjs';
@@ -59,6 +60,7 @@ const mockFlag = true;
     MatToolbarModule,
     FlexLayoutModule,
     FormsModule,  
+    ReactiveFormsModule,
     AppRoutingModule, 
     MatListModule,
     MatIconModule,
@@ -71,8 +73,7 @@ const mockFlag = true;
     MatCheckboxModule,
     MatSelectModule,
     MatSlideToggleModule,
-    ReactiveFormsModule
-        
+    MatProgressSpinnerModule
     
   ],
   providers: [
