@@ -14,16 +14,16 @@ export class DishService {
 
   constructor() { }
 
-  getDishes(): Promise<Dish[]> {
-    return new Promise(resolve => of(DISHES).pipe(delay(2000)).subscribe(result => resolve(result)));
+  getDishes(): Observable<Dish[]> {
+    return of(DISHES).pipe(delay(2000));
   }
 
-  getDish(id: string): Promise<Dish> {
-    return new Promise(resolve => of(DISHES.filter((dish) => (dish.id === id))[0]).pipe(delay(2000)).subscribe(result => resolve(result))); 
+  getDish(id: string): Observable<Dish> {
+    return of(DISHES.filter((dish) => (dish.id === id))[0]).pipe(delay(2000));
   }  
   
-  getFeaturedDish(): Promise<Dish> {
-    return new Promise(resolve => of(DISHES.filter((dish) => dish.featured)[0]).pipe(delay(2000)).subscribe(result => resolve(result)));
+  getFeaturedDish(): Observable<Dish> {
+    return of(DISHES.filter((dish) => dish.featured)[0]).pipe(delay(2000));
   }  
     
 }
