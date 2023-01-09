@@ -21,7 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
+import { MatSliderModule } from '@angular/material/slider';
 
 import 'hammerjs';
 import { MenuComponent } from './menu/menu.component';
@@ -38,6 +38,8 @@ import { LeaderService } from './services/leader.service';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
+import { DatePipe } from '@angular/common';
+
 
 
 const mockFlag = true;
@@ -73,13 +75,15 @@ const mockFlag = true;
     MatCheckboxModule,
     MatSelectModule,
     MatSlideToggleModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSliderModule 
     
   ],
   providers: [
     DishService,
     PromotionService,
     LeaderService,
+    DatePipe
   ],
   entryComponents: [
     LoginComponent

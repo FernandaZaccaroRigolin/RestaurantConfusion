@@ -1,4 +1,5 @@
 $ltgray: #ddd;
+$background-dark: #512DA8;
 
 .full-width {
     width: 95%
@@ -16,5 +17,10 @@ $ltgray: #ddd;
 .text-floral-white {
  color: $ltgray;
 }
+
+.background-primary {
+    background-color: $background-dark;
+  }
+ 
     
   
