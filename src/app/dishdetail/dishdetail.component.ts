@@ -19,7 +19,7 @@ import { NgForm } from '@angular/forms';
 export class DishdetailComponent implements OnInit {
 
   dish: Dish | any;
-  errMess: string | any;
+  errMess: string | any; 
   
 
   dishIds: string[] | any;

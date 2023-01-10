@@ -1,9 +1,10 @@
 
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {NgForm} from '@angular/forms';
 
 import { Feedback, ContactType } from '../shared/feedback';
+import { FeedbackService } from '../services/feedback.service';
 
 
 @Component({
@@ -12,12 +13,14 @@ import { Feedback, ContactType } from '../shared/feedback';
   styleUrls: ['./contact.component.scss']
 
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit {
   
   feedbackForm: FormGroup | any;
+  errMess: string | any; 
   feedback: Feedback | any;
   contactType = ContactType;
   @ViewChild('fform') feedbackFormDirective: NgForm | any;
+  // feedbackcopy: Feedback| any;
 
   formErrors : any= {
     'firstname': '',
@@ -46,9 +49,20 @@ export class ContactComponent {
       'email':         'Email not in valid format.'
     },
   };
-  constructor(private fb: FormBuilder) {
+  constructor(private feedbackservice: FeedbackService,
+    private fb: FormBuilder,
+    @Inject('baseURL') protected baseURL:any) {
     this.createForm();
   }
+
+  // constructor(private dishservice: DishService,
+  //   private route: ActivatedRoute,
+  //   private location: Location,
+  //   private fb: FormBuilder,
+  //   private datePipe: DatePipe,
+  //   @Inject('baseURL') protected baseURL:any) { 
+  //     this.createForm();
+  //   }
 
 
   
@@ -92,7 +106,13 @@ export class ContactComponent {
 
   onSubmit() {
     this.feedback = this.feedbackForm.value;
-    console.log(this.feedback);
+
+    this.feedbackservice.postFeedback(this.feedback)
+    .subscribe(feedback => {
+      this.feedback = feedback; this.feedback = feedback;
+    },
+    errmess => { this.feedback = null; this.feedback = null; this.errMess = <any>errmess; });
+
     this.feedbackForm.reset({
       firstname: '',
       lastname: '',
@@ -104,6 +124,34 @@ export class ContactComponent {
     });
     this.feedbackFormDirective.resetForm();
   }
+
+
+  // onSubmit() {
+  //   this.frComment = this.commentForm.value;
+  //   this.dishcopy.comments.push(this.frComment);
+  //   this.dishservice.putDish(this.dishcopy)
+  //     .subscribe(dish => {
+  //       this.dish = dish; this.dishcopy = dish;
+  //     },
+  //     errmess => { this.dish = null; this.dishcopy = null; this.errMess = <any>errmess; });
+
+  //   this.commentForm.reset({
+  //     author: '',
+  //     rating: 5,
+  //     comment: ''
+      
+  //   });
+  //   this.commentFormDirective.resetForm();
+  // }  
+
+  ngOnInit() {
+    // this.feedbackservice.getFeedbackIds()
+    // .subscribe(dishIds => this.dishIds = dishIds,
+    //   errmess => this.errMess = <any>errmess);
+    // this.route.params.pipe(switchMap((params: Params) => this.feedbackservice.getFeedback(params['id'])))
+    // .subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id); });
+  }
+
 
 
 }
