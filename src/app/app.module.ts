@@ -10,6 +10,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms'; 
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
@@ -39,8 +40,7 @@ import { LeaderService } from './services/leader.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { DatePipe } from '@angular/common';
-
-
+import { baseURL } from './shared/baseurl';
 
 const mockFlag = true;
 @NgModule({
@@ -76,14 +76,16 @@ const mockFlag = true;
     MatSelectModule,
     MatSlideToggleModule,
     MatProgressSpinnerModule,
-    MatSliderModule 
+    MatSliderModule,
+    HttpClientModule 
     
   ],
   providers: [
     DishService,
     PromotionService,
     LeaderService,
-    DatePipe
+    DatePipe,
+    {provide: 'baseURL', useValue: baseURL}
   ],
   entryComponents: [
     LoginComponent

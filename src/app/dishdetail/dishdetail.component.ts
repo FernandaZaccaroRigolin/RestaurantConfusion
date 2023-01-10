@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
 
@@ -55,7 +55,8 @@ export class DishdetailComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private fb: FormBuilder,
-    private datePipe: DatePipe) { 
+    private datePipe: DatePipe,
+    @Inject('baseURL') protected baseURL:any) { 
       this.createForm();
     }
 
@@ -96,7 +97,6 @@ export class DishdetailComponent implements OnInit {
 
     onSubmit() {
       this.frComment = this.commentForm.value;
-     
       this.dish.comments.push(
         {
           rating: this.frComment.rating,
