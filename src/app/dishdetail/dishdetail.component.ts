@@ -19,6 +19,7 @@ import { NgForm } from '@angular/forms';
 export class DishdetailComponent implements OnInit {
 
   dish: Dish | any;
+  errMess: string | any;
 
   dishIds: string[] | any;
   prev: string | any;
@@ -117,11 +118,13 @@ export class DishdetailComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
+    this.dishservice.getDishIds()
+    .subscribe(dishIds => this.dishIds = dishIds,
+      errmess => this.errMess = <any>errmess);
     this.route.params.pipe(switchMap((params: Params) => this.dishservice.getDish(params['id'])))
     .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
   }
-
+  
   setPrevNext(dishId: string | undefined) {
     const index = this.dishIds.indexOf(dishId);
     this.prev = this.dishIds[(this.dishIds.length + index - 1) % this.dishIds.length];
