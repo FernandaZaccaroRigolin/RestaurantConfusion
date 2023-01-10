@@ -42,6 +42,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { DatePipe } from '@angular/common';
 import { baseURL } from './shared/baseurl';
+import { HighlightDirective } from './directives/highlight.directive';
 
 const mockFlag = true;
 @NgModule({
@@ -54,7 +55,8 @@ const mockFlag = true;
     AboutComponent,
     HomeComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    HighlightDirective
     
   ],
   imports: [
