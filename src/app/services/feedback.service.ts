@@ -28,7 +28,7 @@ export class FeedbackService {
     return this.http.get<Feedback[]>(baseURL + 'feedback?featured=true').pipe(map(feedback => feedback[0]));
   }
 
-  postFeedback(feedback: Feedback): Observable<Feedback> {
+  submitFeedback(feedback: Feedback): Observable<Feedback> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
@@ -36,8 +36,6 @@ export class FeedbackService {
     };
     return this.http.post<Feedback>(baseURL + 'feedback' , feedback, httpOptions)
       .pipe(catchError(this.processHTTPMsgService.handleError));
-
-
   }    
 }
 

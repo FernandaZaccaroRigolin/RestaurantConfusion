@@ -5,7 +5,7 @@ import {NgForm} from '@angular/forms';
 
 import { Feedback, ContactType } from '../shared/feedback';
 import { FeedbackService } from '../services/feedback.service';
-import { flyInOut } from '../animations/app.animation';
+import { flyInOut, expand } from '../animations/app.animation';
 
 
 @Component({
@@ -17,7 +17,8 @@ import { flyInOut } from '../animations/app.animation';
     'style': 'display: block;'
     },
     animations: [
-      flyInOut()
+      flyInOut(),
+      expand()
     ]  
 
 })
@@ -28,7 +29,8 @@ export class ContactComponent implements OnInit {
   feedback: Feedback | any;
   contactType = ContactType;
   @ViewChild('fform') feedbackFormDirective: NgForm | any;
-  // feedbackcopy: Feedback| any;
+  feedbackReturn: Feedback| any;
+  isPost: Boolean = false;
 
   formErrors : any= {
     'firstname': '',
@@ -114,12 +116,15 @@ export class ContactComponent implements OnInit {
 
   onSubmit() {
     this.feedback = this.feedbackForm.value;
+    this.isPost = true;
 
-    this.feedbackservice.postFeedback(this.feedback)
+    this.feedbackservice.submitFeedback(this.feedback)
     .subscribe(feedback => {
-      this.feedback = feedback; this.feedback = feedback;
+      this.feedback = feedback; this.feedbackReturn = feedback;
     },
-    errmess => { this.feedback = null; this.feedback = null; this.errMess = <any>errmess; });
+    errmess => { this.feedback = null; this.feedbackReturn = null; this.errMess = <any>errmess; });
+
+    setTimeout(() => (this.isPost = false, this.errMess = '', this.feedbackReturn = null), 10000);
 
     this.feedbackForm.reset({
       firstname: '',
@@ -158,6 +163,7 @@ export class ContactComponent implements OnInit {
     //   errmess => this.errMess = <any>errmess);
     // this.route.params.pipe(switchMap((params: Params) => this.feedbackservice.getFeedback(params['id'])))
     // .subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id); });
+    this.feedbackReturn = null;
   }
 
 

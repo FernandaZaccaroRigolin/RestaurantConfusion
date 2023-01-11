@@ -36,10 +36,10 @@
     </div>
   </div>
 
-  <div fxFlex fxFlexOffset="20px" class="form-size">
+  <div fxFlex fxFlexOffset="20px" class="form-size" >
     <h3>Send us your Feedback</h3>
-    <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>
-    <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+    <!-- <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p> -->
+    <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()" [hidden]="isPost || errMess || feedbackReturn" [@expand]>
       <p>
         <mat-form-field class="half-width">
           <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
@@ -80,4 +80,24 @@
       <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="feedbackForm.invalid">Submit</button>
     </form>
   </div>  
+  <div fxFlex *ngIf="isPost"  [hidden]="errMess || feedbackReturn">
+    <h4>Submitting Form. . . Please Wait</h4>
+    <mat-spinner></mat-spinner>
+  </div>
+  <div fxFlex *ngIf="feedbackReturn" [hidden]="errMess" [@expand]>
+    <h2>Your Submission</h2>
+    <p><span>First Name: </span> {{feedbackReturn.firstname}}</p>
+    <p><span>Last Name: </span> {{feedbackReturn.lastname}}</p>
+    <p><span>Tel. Number: </span> {{feedbackReturn.telnum}}</p>
+    <p><span>Email: </span> {{feedbackReturn.email}}</p>
+    <p><span>Contact You?: </span> {{feedbackReturn.agree}}</p>
+    <p><span>How: </span> {{feedbackReturn.contacttype}}</p>
+    <p><span>Feedback: </span> {{feedbackReturn.message}}</p>
+  </div>  
+  <div fxFlex *ngIf="errMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
+  </div>
+
+
 </div>
